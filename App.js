@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import ContactListItem from './components/ContactListItem';
+import ContactList from './components/ContactList'
 
 export default class App extends React.Component {
   render() {
     return (
-      <ContactListItem/>
+      <ContactList />
     );
   }
 }

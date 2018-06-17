@@ -6,7 +6,7 @@ export default class ContactListItem extends Component {
     render() {
         return (
             <View style={styles.singleRow} >
-                <Text>Name</Text>
+                <Text>{this.props.name}</Text>
                 <Button title="Call" />
                 <Button title="Text" />
             </View>
