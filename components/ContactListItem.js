@@ -7,8 +7,8 @@ export default class ContactListItem extends Component {
         return (
             <View style={styles.singleRow} >
                 <Text>{this.props.name}</Text>
-                <Button title="Call" />
-                <Button title="Text" />
+                <Button title="Call" onPress={() => this.props.onCallPress()}/>
+                <Button title="Text" onPress={() => this.props.onTextPress()}/>
             </View>
         )
     }
