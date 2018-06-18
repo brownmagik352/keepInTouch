@@ -6,21 +6,30 @@ export default class ContactList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            lastChosenString: 'no name pressed!',
+            chosen: []
         }; 
     }
 
     handleCallPress(name) {
-        this.setState({lastChosenString: 'Call ' + name});
+        const chosenNames = this.state.chosen.slice();
+        chosenNames.push({key: "Call " + name});
+        this.setState({chosen: chosenNames});
     }
 
     handleTextPress(name) {
-        this.setState({lastChosenString: 'Text ' + name});
+        const chosenNames = this.state.chosen.slice();
+        chosenNames.push({key: "Text " + name});
+        this.setState({chosen: chosenNames});
     }
 
     render() {
         return (
             <View style={styles.container}>
+                <FlatList
+                    data = {this.state.chosen}
+                    renderItem={({item}) => <Text>{item.key}</Text>}
+                />
+
                 <FlatList
                 data={[
                     {key: 'Devin'},
@@ -38,7 +47,6 @@ export default class ContactList extends Component {
                                             onTextPress={() => this.handleTextPress(item.key)} 
                                         />}
                 />
-                <Text>{this.state.lastChosenString}</Text>
             </View>
         )
     }
