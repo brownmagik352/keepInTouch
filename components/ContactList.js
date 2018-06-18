@@ -14,7 +14,7 @@ export default class ContactList extends Component {
 
     handlePress(name) {
         const chosenNames = this.state.chosen.slice();
-        chosenNames.push({key: name});
+        chosenNames.push(name);
         this.setState({chosen: chosenNames});
     }
 
@@ -31,8 +31,9 @@ export default class ContactList extends Component {
             <View style={styles.container}>
                 <FlatList
                     data = {this.state.chosen}
-                    renderItem={({item}) => <ActionableContact name={item.key} />}
+                    renderItem={({item}) => <ActionableContact name={item} />}
                     ListEmptyComponent={<Text>No Reminders Set</Text>}
+                    keyExtractor={(item, index) => index}
                 />
 
                 <Button title="Show/Hide Contacts" onPress={() => this.toggleContactListVisible()} />
