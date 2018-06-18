@@ -33,7 +33,7 @@ export default class ContactList extends Component {
                     data = {this.state.chosen}
                     renderItem={({item}) => <ActionableContact name={item} />}
                     ListEmptyComponent={<Text>No Reminders Set</Text>}
-                    keyExtractor={(item, index) => index}
+                    keyExtractor={(item, index) => index.toString()}
                 />
 
                 <Button title="Show/Hide Contacts" onPress={() => this.toggleContactListVisible()} />
