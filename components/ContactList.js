@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, FlatList, StyleSheet, Text } from 'react-native';
 import ContactListItem from './ContactListItem';
+import ActionableContact from './ActionableContact';
 
 export default class ContactList extends Component {
     constructor(props) {
@@ -10,15 +11,9 @@ export default class ContactList extends Component {
         }; 
     }
 
-    handleCallPress(name) {
+    handlePress(name) {
         const chosenNames = this.state.chosen.slice();
-        chosenNames.push({key: "Call " + name});
-        this.setState({chosen: chosenNames});
-    }
-
-    handleTextPress(name) {
-        const chosenNames = this.state.chosen.slice();
-        chosenNames.push({key: "Text " + name});
+        chosenNames.push({key: name});
         this.setState({chosen: chosenNames});
     }
 
@@ -27,7 +22,7 @@ export default class ContactList extends Component {
             <View style={styles.container}>
                 <FlatList
                     data = {this.state.chosen}
-                    renderItem={({item}) => <Text>{item.key}</Text>}
+                    renderItem={({item}) => <ActionableContact name={item.key} />}
                 />
 
                 <FlatList
@@ -43,8 +38,7 @@ export default class ContactList extends Component {
                 ]}
                 renderItem={({item}) => <ContactListItem 
                                             name={item.key} 
-                                            onCallPress={() => this.handleCallPress(item.key)} 
-                                            onTextPress={() => this.handleTextPress(item.key)} 
+                                            onPress={() => this.handlePress(item.key)}
                                         />}
                 />
             </View>
