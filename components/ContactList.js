@@ -8,7 +8,13 @@ export default class ContactList extends Component {
         super(props);
         this.state = {
             chosen: [],
-            contactListItemsVisible: false
+            contactListItemsVisible: false,
+            contacts: [
+                {name: 'Aaron', number: '123-456-7890'},
+                {name: 'Betty', number: '234-567-8901'},
+                {name: 'Charlie', number: '345-678-9012'},
+                {name: 'Dave', number: '456-789-0123'}
+            ]
         }; 
     }
 
@@ -40,20 +46,13 @@ export default class ContactList extends Component {
 
                 { this.state.contactListItemsVisible && 
                     <FlatList
-                    data={[
-                        {key: 'Devin'},
-                        {key: 'Jackson'},
-                        {key: 'James'},
-                        {key: 'Joel'},
-                        {key: 'John'},
-                        {key: 'Jillian'},
-                        {key: 'Jimmy'},
-                        {key: 'Julie'},
-                    ]}
+                    data={this.state.contacts}
                     renderItem={({item}) => <ContactListItem 
-                                                name={item.key} 
-                                                onPress={() => this.handlePress(item.key)}
+                                                name={item.name} 
+                                                onPress={() => this.handlePress(item.name)}
                                             />}
+                    
+                    keyExtractor={(item, index) => index.toString()}
                     />
                 }
             </View>
