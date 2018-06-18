@@ -23,6 +23,7 @@ export default class ContactList extends Component {
                 <FlatList
                     data = {this.state.chosen}
                     renderItem={({item}) => <ActionableContact name={item.key} />}
+                    ListEmptyComponent={<Text>No Reminders Set</Text>}
                 />
 
                 <FlatList
